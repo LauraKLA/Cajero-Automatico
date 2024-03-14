@@ -9,17 +9,17 @@ import Modelos.VeinteMil;
 
 public class App {
 
-    private CienMil cadenaDispensadores;
+    private IDispensador sucesor;
 
     public App() {
-        this.cadenaDispensadores = new CienMil();
+        this.sucesor = new CienMil();
 
         IDispensador CincuentaMil = new CincuentaMil();
         IDispensador VeinteMil = new VeinteMil();
         IDispensador DiezMil = new DiezMil();
         IDispensador CincoMil = new CincoMil();
 
-        cadenaDispensadores.setSucesor(CincuentaMil);
+        sucesor.setSucesor(CincuentaMil);
         CincuentaMil.setSucesor(VeinteMil);
         VeinteMil.setSucesor(DiezMil);
         DiezMil.setSucesor(CincoMil);
@@ -29,12 +29,12 @@ public class App {
     public void retirar(int cantidad) {
 
         if (cantidad % 5000 != 0) {
-            JOptionPane.showMessageDialog(null, "Error: La cantidad debe ser un múltiplo de 5000");
+
             return;
 
         }
 
-        cadenaDispensadores.dispensar(cantidad);
+        sucesor.dispensar(cantidad);
     }
 
     public static void main(String[] args) {
